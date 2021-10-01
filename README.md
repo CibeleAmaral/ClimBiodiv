@@ -8,7 +8,7 @@ The effects of wind gusts associated with hurricanes and of rainfall trends in t
   <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135640372-0978a3a6-8c68-46a1-967a-5b63dfd20857.png">
 </p> 
 
-### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification (data = Landsat-5/TM, and/or Landsat-8/OLI)
+### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification using Landsat-5/TM, and/or Landsat-8/OLI
 
 ```javascript
 /* You must remove the double slash from the lines you wish to run  */
@@ -343,7 +343,7 @@ Visualization of step 5 - NDFIW before (A) and after (B) disturbance, step 7 - d
 
 *You might run the code above for multiple years and unify the annual sample points into one layer for a long-term analysis.
 
-### (ii) JavaScript for Earth Engine code for exporting multi-source remote sensing data from damage sample points as a table (data = multiple sources)
+### (ii) JavaScript for Earth Engine code for exporting multi-source remote sensing data from damage sample points as a table
 
 ```javascript
 /* Set Area of Interest - Here, Caribbean and Gulf of Mexico */
@@ -376,3 +376,5 @@ var Monthly_Clim_dmg9620 = Monthly_Climate.map(function(image){
   fileFormat: 'CSV'
   });
 ```
+
+### (iii) R code for Random Forest classification and variable importance definition (i.e., drivers identification) using multi-source tabulated data
