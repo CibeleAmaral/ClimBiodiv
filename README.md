@@ -344,3 +344,35 @@ Visualization of step 5 - NDFIW before (A) and after (B) disturbance, step 7 - d
 *You might run the code above for multiple years and unify the annual sample points into one layer for a long-term analysis.
 
 ### (ii) JavaScript for Earth Engine code for exporting multi-source remote sensing data from damage sample points as a table (data = multiple sources)
+
+```javascript
+/* Set Area of Interest - Here, Caribbean and Gulf of Mexico */
+var region = ee.Geometry.Rectangle(-99.33, 6.11, -55.88, 31.86);
+
+/* Set Sample points */
+var dmg9620 = ee.FeatureCollection('users/cibeleha/DMG9620_Merge154m');
+
+/* Set Variables of Interest (some examples) */ 
+var Monthly_Climate = ee.ImageCollection("ECMWF/ERA5/MONTHLY")
+//var AGB_BGB = ee.ImageCollection("NASA/ORNL/biomass_carbon_density/v1");
+//var Topo_diversity = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity");
+//var Soil_moisture = ee.ImageCollection("NASA_USDA/HSL/SMAP10KM_soil_moisture");
+//var Land_cover = ee.ImageCollection("COPERNICUS/Landcover/100m/Proba-V-C3/Global");
+
+/* Extract mean value from raster */
+var Monthly_Clim_dmg9620 = Monthly_Climate.map(function(image){
+  return image.reduceRegions({
+    collection: dmg9620, 
+    reducer:ee.Reducer.mean(), 
+    scale: 30
+  });
+});
+
+/* Export the FeatureCollection to a CSV file */
+  Export.table.toDrive({
+  collection:Monthly_Clim_dmg9620,
+  folder: 'ClimBiodiv',
+  description:'Monthly_Clim_dmg9620',
+  fileFormat: 'CSV'
+  });
+```
