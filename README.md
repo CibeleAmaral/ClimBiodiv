@@ -10,7 +10,7 @@ The effects of wind gusts associated with hurricanes and of rainfall trends in t
 
 ### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification (data = Landsat-5/TM, and/or Landsat-8/OLI)
 
-```
+```javascript
 /* You must remove the double slash from the lines you wish to run  */
 
 
@@ -341,6 +341,6 @@ Map.addLayer(degrad_2017, {min: 1, max :3, palette: ['grey', 'orange', 'blue']},
 ![ClimBiodiv_readme_fig2](https://user-images.githubusercontent.com/67020853/135663699-6aa915e7-a737-4975-b779-e616bea846f7.png)
 Visualization of step 5 - NDFIW before (A) and after (B) disturbance, step 7 - difference, and step 8 - damaged areas (in blue). Zoom-in in southern Florida.
 
-*You might run the code above for multiple years and unify them for long-term analysis.
+*You might run the code above for multiple years and unify the annual sample points into one layer for a long-term analysis.
 
 ### (ii) JavaScript for Earth Engine code for exporting multi-source remote sensing data from damage sample points as a table (data = multiple sources)
