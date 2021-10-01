@@ -3,3 +3,6 @@
 Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity from regional to local scale 
 The effect of wind gusts associated to hurricanes and rainfall trends in the Caribbean region are used as example here
 
+<p align="center">
+  <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135640372-0978a3a6-8c68-46a1-967a-5b63dfd20857.png">
+</p> 
