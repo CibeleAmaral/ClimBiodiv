@@ -537,7 +537,7 @@ var_import
 plot(var_import)
 ```
 <p align="center">
-  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
+  <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
 </p> 
                          Variable importance to the Random Forest classification
 
