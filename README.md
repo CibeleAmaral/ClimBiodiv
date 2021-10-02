@@ -424,7 +424,7 @@ by(dataD, dataD$Class, summary)
 
 ### Compute descriptive statistics by group and calculate normality and identity tests
 
-tableDMG_EX <- compareGroups(Class ~ ., data = dataD, method = 4, include.label = TRUE)
+tableDMG_EXAMPLE <- compareGroups(Class ~ ., data = dataD, method = 4, include.label = TRUE)
 print (tableDMG_EXAMPLE) 
 
 ## -------- Summary of results by groups of 'Class'---------
