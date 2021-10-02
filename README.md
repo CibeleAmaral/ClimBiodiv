@@ -542,7 +542,7 @@ plot(var_import)
 </p> 
 Fig 4. Variable importance to the Random Forest classification. Wind speed is the most important driver of mangrove damage in our example.
 
-## (iv) R code for quantile regression between long-term climate data and current ecosystem structure (data = ERA5 reanalysis - wind speed - 31km, and GEDI L3 - 1km average RH100)
+## (iv) R code for quantile regression between long-term wind speed data and current ecosystem structure: 40-yrs cumulative wind speed (first box), and time since the last hurricane (second box) (data = ERA5 reanalysis - wind speed - 31km, and GEDI L3 - 1km average RH100)
 ```r
 ### Load package
 
