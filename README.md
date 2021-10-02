@@ -537,7 +537,7 @@ var_import
 plot(var_import)
 ```
 <p align="center">
-  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730461-b75a8e4e-3de4-452f-8ec5-cb0f58592e92.png">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
 </p> 
-                         Example of normality plots for the variable "annual maximum sustained wind speed (km/hr) 
+                         Variable importance to the Random Forest classification
 
