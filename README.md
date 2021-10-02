@@ -1,11 +1,13 @@
 # ClimBiodiv - a framework for cross-scale analysis on climate-biodiversity relations using remote sensing data
 
-Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity and resilience from regional to local scale 
+Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity and resilience from regional to local scale
+
+The drivers of the Caribbean and Gulf of Mexico mangroves damage following tropical cyclones, the effect of wind gusts associated with cyclones on the structure of the mangrove, the resilience to high wind gusts, and the role of biodiversity in Floridian mangrove structural resistance and resilience are used as examples
 
 <p align="center">
   <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135728986-6f0f4dcd-34ae-4ef8-8b98-84a69b9d84b6.png">
 </p> 
-Fig 1. The effects of wind gusts associated with hurricanes on the Caribbean and Gulf of Mexico mangroves strcutural diversity and the role functional biodiversity in mangrove structural resilience are used as examples 
+Fig 1. Graphical representation of the effects of climate extreme events (herein high wind gusts) on mangrove structural biodiversity and of functional biodiversity on mangrove structural resilience
 
 ### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification using Landsat-5/TM, and/or Landsat-8/OLI
 
