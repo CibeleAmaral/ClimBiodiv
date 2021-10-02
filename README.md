@@ -2,11 +2,10 @@
 
 Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity and resilience from regional to local scale 
 
-The effects of wind gusts associated with hurricanes and of rainfall trends in the Caribbean and Gulf of Mexico mangroves are used as examples 
-
 <p align="center">
   <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135728986-6f0f4dcd-34ae-4ef8-8b98-84a69b9d84b6.png">
 </p> 
+Fig 1. The effects of wind gusts associated with hurricanes on the Caribbean and Gulf of Mexico mangroves strcutural diversity and the role functional biodiversity in mangrove structural resilience are used as examples 
 
 ### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification using Landsat-5/TM, and/or Landsat-8/OLI
 
@@ -339,7 +338,7 @@ Map.addLayer(degrad_2017, {min: 1, max :3, palette: ['grey', 'orange', 'blue']},
 //});
 ```
 ![ClimBiodiv_readme_fig2](https://user-images.githubusercontent.com/67020853/135663699-6aa915e7-a737-4975-b779-e616bea846f7.png)
-Visualization of step 5 - NDFIW before (A) and after (B) disturbance, step 7 - difference, and step 8 - damaged areas (in blue). Zoom-in in southern Florida.
+Fig 2. Visualization of step 5 - NDFIW before (A) and after (B) disturbance, step 7 - difference, and step 8 - damaged areas (in blue). Zoom-in in southern Florida.
 
 *You might run the code above for multiple years and unify the annual sample points into one layer for a long-term analysis.
 
@@ -459,7 +458,7 @@ export2word(export_table, file = "tableDMG_EXAMPLE.docx")
 <p align="center">
   <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730816-133e439e-0c02-4d33-83d3-0ec0d7bafd1d.png">
 </p> 
-                         Example of normality plots for the variable "annual maximum sustained wind speed (km/hr) 
+Fig 3. Example of normality plots for the variable "annual maximum sustained wind speed (km/hr) 
 
 
 ```r
@@ -539,5 +538,5 @@ plot(var_import)
 <p align="center">
   <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
 </p> 
-                         Variable importance to the Random Forest classification
+Fig 4. Variable importance to the Random Forest classification
 
