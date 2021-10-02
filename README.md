@@ -452,12 +452,17 @@ print (tableDMG_EXAMPLE)
 ## Signif. codes:  0 '**' 0.05 '*' 0.1 ' ' 1 
 
 plot (tableDMG_EXAMPLE) 
-
-
-
 export_table <- createTable(tableDMG_EXAMPLE)
 export2word(export_table, file = "tableDMG_EXAMPLE.docx")
 
+```
+<p align="center">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730461-b75a8e4e-3de4-452f-8ec5-cb0f58592e92.png">
+</p> 
+                         Example of normality plots for the variable "annual maximum sustained wind speed (km/hr) 
+
+
+```r
 ### Calculate correlation between variables and plot Correlation matrix
 
 my_dataD <- dataD %>% select_if(is.numeric)
@@ -530,5 +535,9 @@ var_import<- varImp(rf_DMG_EXAMPLE)
 
 var_import
 plot(var_import)
-
 ```
+<p align="center">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730461-b75a8e4e-3de4-452f-8ec5-cb0f58592e92.png">
+</p> 
+                         Example of normality plots for the variable "annual maximum sustained wind speed (km/hr) 
+
