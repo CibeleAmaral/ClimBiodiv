@@ -377,7 +377,7 @@ var Monthly_Clim_dmg9620 = Monthly_Climate.map(function(image){
   });
 ```
 
-### (iii) R code for Random Forest classification and variable importance definition (i.e., drivers identification) using multi-source tabulated data
+### (iii) R code for Machine Learning classification and variable importance definition (i.e., drivers identification) using multi-source tabulated data
 
 ```r
 ### Load packages
@@ -388,7 +388,7 @@ library(dplyr)
 library(compareGroups)
 library(corrplot)
 
-### Read data 
+### Read data ans display summary
 
 dataD <- read.table("DB_DMG_UNDMG_893_EXAMPLE.csv", header = TRUE, sep = ",", dec = ".")
 head(dataD)
@@ -398,13 +398,62 @@ dataD$Geomorphology = factor(dataD$Geomorphology)
 head(dataD)
 
 summary(dataD)
+
+## Class     TC_Recurrence    Prec_dryseason_YoD Prec_wetseason_YoD Wind_annualSCL_YoD Prec_annual_mean_LT
+## Damaged  :443   Min.   : 5.000   Min.   :152.6      Min.   : 551.9     Min.   : 37.76     Min.   : 96.84     
+## Undamaged:450   1st Qu.: 8.000   1st Qu.:248.3      1st Qu.:1213.5     1st Qu.: 53.29     1st Qu.:119.33     
+##                 Median : 8.000   Median :328.9      Median :1514.8     Median : 61.49     Median :146.96
+## ...
+
 by(dataD, dataD$Class, summary)
+
+## dataD$Class: Damaged
+##       Class     TC_Recurrence    Prec_dryseason_YoD Prec_wetseason_YoD Wind_annualSCL_YoD Prec_annual_mean_LT
+## Damaged  :443   Min.   : 5.000   Min.   :152.6      Min.   : 551.9     Min.   : 37.76     Min.   : 96.84     
+## Undamaged:  0   1st Qu.: 8.000   1st Qu.:257.9      1st Qu.:1400.8     1st Qu.: 53.80     1st Qu.:146.96     
+##                 Median : 8.000   Median :418.9      Median :1556.9     Median : 87.83     Median :170.08    
+## ... 
+-------------------------
+## dataD$Class: Undamaged
+##       Class     TC_Recurrence    Prec_dryseason_YoD Prec_wetseason_YoD Wind_annualSCL_YoD Prec_annual_mean_LT
+## Damaged  :  0   Min.   : 5.000   Min.   :164.9      Min.   : 736.8     Min.   :38.20      Min.   : 96.84     
+## Undamaged:450   1st Qu.: 8.000   1st Qu.:227.3      1st Qu.:1146.5     1st Qu.:53.29      1st Qu.:113.85     
+##                 Median : 8.000   Median :303.9      Median :1424.6     Median :55.67      Median :146.96     
+## ...                 
 
 ### Compute descriptive statistics by group and calculate normality and identity tests
 
 tableDMG_EX <- compareGroups(Class ~ ., data = dataD, method = 4, include.label = TRUE)
 print (tableDMG_EXAMPLE) 
+
+## -------- Summary of results by groups of 'Class'---------
+
+
+##   var                     N   p.value  method                selection
+## 1  TC_Recurrence           893 <0.001** continuous non-normal ALL      
+## 2  Prec_dryseason_YoD      893 <0.001** continuous non-normal ALL      
+## 3  Prec_wetseason_YoD      893 <0.001** continuous non-normal ALL      
+## 4  Wind_annualSCL_YoD      893 <0.001** continuous non-normal ALL      
+## 5  Prec_annual_mean_LT     893 <0.001** continuous non-normal ALL      
+## 6  Prec_annual_trend_LT    893 0.042**  continuous non-normal ALL      
+## 7  TempMax_annual_mean_LT  893 <0.001** continuous non-normal ALL      
+## 8  TempMax_annual_trend_LT 893 <0.001** continuous non-normal ALL      
+## 9  Drought_annual_trend_LT 893 0.526    continuous non-normal ALL      
+## 10 Canopy_height_2000      893 <0.001** continuous non-normal ALL      
+## 11 GV_fraction_2YbD        893 <0.001** continuous non-normal ALL      
+## 12 Soil_fraction_2YbD      893 <0.001** continuous non-normal ALL      
+## 13 Water_fraction_2YbD     893 <0.001** continuous non-normal ALL      
+## 14 Geomorphology           893 <0.001** categorical           ALL      
+## 15 Dist_shore              893 <0.001** continuous non-normal ALL      
+## 16 Dist_crop               893 0.093*   continuous non-normal ALL      
+## 17 Dist_settlem            893 <0.001** continuous non-normal ALL      
+## 18 Dist_road               893 <0.001** continuous non-normal ALL      
+## -----
+## Signif. codes:  0 '**' 0.05 '*' 0.1 ' ' 1 
+
 plot (tableDMG_EXAMPLE) 
+
+
 
 export_table <- createTable(tableDMG_EXAMPLE)
 export2word(export_table, file = "tableDMG_EXAMPLE.docx")
@@ -421,11 +470,11 @@ hcv = dataD %>% select_if(is.numeric) %>% cor() %>% findCorrelation(cutoff = 0.7
 print("variable to be removed from dataframe")
 print(hcv)
 
-### define parameters for 10-fold cross-validation
+### Define parameters for 10-fold cross-validation
 
 control <- trainControl(method="repeatedcv", number=10, repeats=3, search="random")
 
-### run machine learning model (e.g., method = Random Forest)
+### Run machine learning model (e.g., method = Random Forest)
 
 set.seed(500)
 rf_DMG_EXAMPLE <- train(Class ~., data = dataD, method = "rf", metric = "Accuracy", 
@@ -435,9 +484,51 @@ rf_DMG_EXAMPLE <- train(Class ~., data = dataD, method = "rf", metric = "Accurac
 
 print(rf_DMG_EXAMPLE)
 
-# Show variable importance (i.e., drivers definition) 
+## Random Forest 
+
+## 893 samples
+## 18 predictor
+##  2 classes: 'Damaged', 'Undamaged' 
+
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 804, 804, 804, 803, 803, 804, ... 
+## Resampling results across tuning parameters:
+
+## mtry  Accuracy   Kappa    
+##   9    0.9749688  0.9499164
+##  15    0.9719892  0.9439590
+##  18    0.9716188  0.9432164
+
+# Calculate and plot variable importance (i.e., drivers definition) 
 
 var_import<- varImp(rf_DMG_EXAMPLE) 
+
+## rf variable importance
+
+##                         Importance
+## Wind_annualSCL_YoD         100.000
+## Water_fraction_2YbD         61.691
+## Prec_wetseason_YoD          34.917
+## Prec_dryseason_YoD          29.768
+## Soil_fraction_2YbD          28.584
+## Dist_shore                  21.263
+## Dist_settlem                18.961
+## Prec_annual_mean_LT         16.066
+## GeomorphologyLagoon         13.393
+## Prec_annual_trend_LT        13.254
+## GV_fraction_2YbD            12.291
+## Dist_road                   11.408
+## TC_Recurrence               11.164
+## Dist_crop                   10.352
+## TempMax_annual_trend_LT      9.947
+## GeomorphologyOpenCoast       9.174
+## Canopy_height_2000           9.009
+## Drought_annual_trend_LT      8.776
+## TempMax_annual_mean_LT       7.288
+## GeomorphologyEstuary         0.000
+
 var_import
 plot(var_import)
+
 ```
