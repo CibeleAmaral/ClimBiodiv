@@ -340,7 +340,7 @@ Map.addLayer(degrad_2017, {min: 1, max :3, palette: ['grey', 'orange', 'blue']},
 //});
 ```
 ![ClimBiodiv_readme_fig2](https://user-images.githubusercontent.com/67020853/135663699-6aa915e7-a737-4975-b779-e616bea846f7.png)
-Fig 2. Visualization of step 5 - NDFIW before (A) and after (B) disturbance, step 7 - difference, and step 8 - damaged areas (in blue). Zoom-in in southern Florida.
+Fig 2. Visualization of the results from step 5 - NDFIW before (A) and after (B) disturbance, step 7 - difference (C), and step 8 - undamaged and damaged mangrove areas in orange and blue, respectively (D). Zoom-in in southern Florida.
 
 *You might run the code above for multiple years and unify the annual sample points into one layer for a long-term analysis.
 
