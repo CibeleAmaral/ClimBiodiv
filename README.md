@@ -344,7 +344,7 @@ Fig 2. Visualization of the results from step 5 - NDFIW before (A) and after (B)
 
 *You might run the code above for multiple years and unify the annual sample points into one layer for a long-term analysis.
 
-### (ii) JavaScript for Earth Engine code for exporting multi-source remote sensing data from damage sample points as a table
+### (ii) JavaScript for Earth Engine code for exporting multi-source remote sensing data from damaged and undamaged mangrove sample points as a table
 
 ```javascript
 /* Set Area of Interest - Here, Caribbean and Gulf of Mexico */
@@ -542,7 +542,7 @@ plot(var_import)
 </p> 
 Fig 4. Variable importance to the Random Forest classification. Wind speed is the most important driver of mangrove damage in our example.
 
-## (iv) R code for quantile regression between long-term wind speed data and current ecosystem structure: 40-yrs cumulative wind speed (first box), and time since the last hurricane (second box) (data = ERA5 reanalysis - wind speed - 31km, and GEDI L3 - 1km average RH100)
+## (iv) R code for quantile regression between current ecosystem structure (GEDI L3) and long-term wind speed data (ERA5 reanalysis): 40-yrs cumulative wind speed (first box), and time since the last hurricane (second box)
 ```r
 ### Load package
 
