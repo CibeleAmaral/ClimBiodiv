@@ -2,7 +2,7 @@
 
 Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity and resilience from regional to local scale
 
-The drivers of the Caribbean and Gulf of Mexico mangroves damage following tropical cyclones, the effect of wind gusts associated with cyclones on the structure of the mangrove, the resilience to high wind gusts, and the role of biodiversity in Floridian mangrove structural resistance and resilience are used as examples
+The drivers of the Caribbean and Gulf of Mexico mangroves damage following tropical cyclones, the effect of wind gusts associated with cyclones on the structure of the mangrove, the resilience to hurricanes, and the role of biodiversity in the Floridian mangroves structural resistance and resilience are used as examples
 
 <p align="center">
   <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135728986-6f0f4dcd-34ae-4ef8-8b98-84a69b9d84b6.png">
