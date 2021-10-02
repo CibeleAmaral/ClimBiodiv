@@ -377,7 +377,7 @@ var Monthly_Clim_dmg9620 = Monthly_Climate.map(function(image){
   });
 ```
 
-### (iii) R code for Machine Learning classification and variable importance definition (i.e., drivers identification) using multi-source tabulated data
+### (iii) R code for Descriptive Statistic calculation (first box), Machine Learning classification and variable importance definition (second box) using multi-source tabulated data
 
 ```r
 ### Load packages
@@ -457,7 +457,7 @@ export2word(export_table, file = "tableDMG_EXAMPLE.docx")
 
 ```
 <p align="center">
-  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730461-b75a8e4e-3de4-452f-8ec5-cb0f58592e92.png">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730816-133e439e-0c02-4d33-83d3-0ec0d7bafd1d.png">
 </p> 
                          Example of normality plots for the variable "annual maximum sustained wind speed (km/hr) 
 
