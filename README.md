@@ -5,7 +5,7 @@ Here you will find a set of JavaScript for Earth Engine and R codes for analyzin
 The effects of wind gusts associated with hurricanes and of rainfall trends in the Caribbean and Gulf of Mexico mangroves are used as examples 
 
 <p align="center">
-  <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135640372-0978a3a6-8c68-46a1-967a-5b63dfd20857.png">
+  <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135728986-6f0f4dcd-34ae-4ef8-8b98-84a69b9d84b6.png">
 </p> 
 
 ### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification using Landsat-5/TM, and/or Landsat-8/OLI
@@ -378,3 +378,66 @@ var Monthly_Clim_dmg9620 = Monthly_Climate.map(function(image){
 ```
 
 ### (iii) R code for Random Forest classification and variable importance definition (i.e., drivers identification) using multi-source tabulated data
+
+```r
+### Load packages
+
+library(caret) 
+library(randomForest) 
+library(dplyr)
+library(compareGroups)
+library(corrplot)
+
+### Read data 
+
+dataD <- read.table("DB_DMG_UNDMG_893_EXAMPLE.csv", header = TRUE, sep = ",", dec = ".")
+head(dataD)
+
+dataD$Class = factor(dataD$Class)
+dataD$Geomorphology = factor(dataD$Geomorphology)
+head(dataD)
+
+summary(dataD)
+by(dataD, dataD$Class, summary)
+
+### Compute descriptive statistics by group and calculate normality and identity tests
+
+tableDMG_EX <- compareGroups(Class ~ ., data = dataD, method = 4, include.label = TRUE)
+print (tableDMG_EXAMPLE) 
+plot (tableDMG_EXAMPLE) 
+
+export_table <- createTable(tableDMG_EXAMPLE)
+export2word(export_table, file = "tableDMG_EXAMPLE.docx")
+
+### Calculate correlation between variables and plot Correlation matrix
+
+my_dataD <- dataD %>% select_if(is.numeric)
+mydataD.cor = cor(my_dataD, method = c("kendall"))
+corrplot(mydataD.cor, method="number", tl.col="black")
+
+### Indicate highly correlated variables to remove
+
+hcv = dataD %>% select_if(is.numeric) %>% cor() %>% findCorrelation(cutoff = 0.75, names = T)
+print("variable to be removed from dataframe")
+print(hcv)
+
+### define parameters for 10-fold cross-validation
+
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="random")
+
+### run machine learning model (e.g., method = Random Forest)
+
+set.seed(500)
+rf_DMG_EXAMPLE <- train(Class ~., data = dataD, method = "rf", metric = "Accuracy", 
+                         importance = TRUE, ntree=700, trControl=control)
+
+# Print results from RF classification
+
+print(rf_DMG_EXAMPLE)
+
+# Show variable importance (i.e., drivers definition) 
+
+var_import<- varImp(rf_DMG_EXAMPLE) 
+var_import
+plot(var_import)
+```
