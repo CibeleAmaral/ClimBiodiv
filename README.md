@@ -540,5 +540,140 @@ plot(var_import)
 <p align="center">
   <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
 </p> 
-Fig 4. Variable importance to the Random Forest classification
+Fig 4. Variable importance to the Random Forest classification. Wind speed is the most important driver of mangrove damage in our example.
 
+## (iv) R code for quantile regression between long-term climate data and current ecosystem structure (data = ERA5 reanalysis - wind speed - 31km, and GEDI L3 - 1km average RH100)
+```r
+### Load package
+
+library(quantreg)
+
+### Read data
+
+data <- read.table("DB_GEDI_HURRICANES_all.csv", header = TRUE, sep = ",", dec = ".")
+head(data)
+
+dataB <- read.table("DB_ALL_BAH.csv", header = TRUE, sep = ",", dec = ".")
+head(dataB)
+
+dataF <- read.table("DB_ALL_FLO.csv", header = TRUE, sep = ",", dec = ".")
+head(dataF)
+
+dataECA <- read.table("DB_ALL_ECA.csv", header = TRUE, sep = ",", dec = ".")
+head(dataECA)
+
+dataGAN <- read.table("DB_ALL_GAN.csv", header = TRUE, sep = ",", dec = ".")
+head(dataGAN)
+
+dataSCA <- read.table("DB_ALL_SCA.csv", header = TRUE, sep = ",", dec = ".")
+head(dataSCA)
+
+dataSWCA <- read.table("DB_ALL_SWCA.csv", header = TRUE, sep = ",", dec = ".")
+head(dataSWCA)
+
+dataWCA <- read.table("DB_ALL_WCA.csv", header = TRUE, sep = ",", dec = ".")
+head(dataWCA)
+
+dataSGM <- read.table("DB_ALL_SGM.csv", header = TRUE, sep = ",", dec = ".")
+head(dataSGM)
+
+dataNGM <- read.table("DB_ALL_NGM.csv", header = TRUE, sep = ",", dec = ".")
+head(dataNGM)
+
+### Multiple quantile regression to analyze the impact of 40-yrs cumulative wind gusts in the current canopy height
+
+multi_rqfit <- rq(HEIGHT_GEDI ~ SUM_GUST, data = data, tau = seq(0, 1, by = 0.1))
+multi_rqfit
+?summary.rq
+
+# Plot different quantiles
+
+colors <- c("#ffe6e6", "#ffcccc", "#ff9999", "#ff6666", "#ff3333",
+            "#ff0000", "#cc0000", "#b30000", "#800000", "#4d0000", "#000000")
+plot(HEIGHT_GEDI ~ SUM_GUST, data = data, pch = 16, main = "Canopy height (m) ~ Cumulative wind speed (km/h)")
+for (j in 1:ncol(multi_rqfit$coefficients)) {
+  abline(coef(multi_rqfit)[, j], col = colors[j])
+}
+
+# Plot selected quantiles
+  
+plot(HEIGHT_GEDI ~ SUM_GUST, data = data, pch = 16, main = "Canopy height (m) ~ Cumulative wind speed (km/h)")
+abline(lm(HEIGHT_GEDI ~ SUM_GUST, data = data), col = "red", lty = 2)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .5, data = data), col = "blue", lty = 2)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = data), col = "green", lty = 2)
+legend("topright", legend = c("lm", "qr 0.5", "qr 0.8"), col = c("red", "blue", "green"), lty = 2)
+
+# Plot selected quantile by ecoregion
+
+plot(HEIGHT_GEDI ~ SUM_GUST, data = data, pch = 16, main = "Canopy height (m) ~ Cumulative wind speed (km/h)")
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, data = dataB), col = "blueviolet", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataECA), col = "chartreuse2", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataF), col = "darkgoldenrod", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataGAN), col = "cyan", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataNGM), col = "darkgreen", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataSCA), col = "darkslateblue", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataSGM), col = "brown2", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataSWCA), col = "hotpink", lty = 1)
+abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataWCA), col = "deepskyblue3", lty = 1)
+legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "SCA", "SGM", "SWCA", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "darkslateblue", "brown2", "hotpink", "deepskyblue3"), lty = 1)
+```
+
+
+
+```r
+### Read data (mangroves impacted by hurricanes - i.e., wind speed higher than 119 km/h - only)
+
+dataI <- read.table("DB_GEDI_HURRICANES_only_impacted.csv", header = TRUE, sep = ",", dec = ".")
+head(dataI)
+
+dataBI <- read.table("DB_IMP_BAH.csv", header = TRUE, sep = ",", dec = ".")
+head(dataBI)
+
+dataFI <- read.table("DB_IMP_FLO.csv", header = TRUE, sep = ",", dec = ".")
+head(dataFI)
+
+dataECAI <- read.table("DB_IMP_ECA.csv", header = TRUE, sep = ",", dec = ".")
+head(dataECAI)
+
+dataGANI <- read.table("DB_IMP_GAN.csv", header = TRUE, sep = ",", dec = ".")
+head(dataGANI)
+
+dataWCAI <- read.table("DB_IMP_WCA.csv", header = TRUE, sep = ",", dec = ".")
+head(dataWCAI)
+
+dataNGMI <- read.table("DB_IMP_NGM.csv", header = TRUE, sep = ",", dec = ".")
+head(dataNGMI)
+
+### Multiple quantile regression to analyze the current canopy height in sites with varying time since the last hurricane (i.e., wind gust > 119 km/hr)
+
+multi_rqfitI <- rq(HEIGHT_GEDI ~ G119_TS, data = dataI, tau = seq(0, 1, by = 0.1))
+multi_rqfitI
+
+# Plot different quantiles
+
+colors <- c("#ffe6e6", "#ffcccc", "#ff9999", "#ff6666", "#ff3333",
+            "#ff0000", "#cc0000", "#b30000", "#800000", "#4d0000", "#000000")
+plot(HEIGHT_GEDI ~ G119_TS, data = dataI, pch = 16, main = "Canopy height (m) ~ Time since the last hurricane (yr)")
+for (j in 1:ncol(multi_rqfit$coefficients)) {
+  abline(coef(multi_rqfit)[, j], col = colors[j])
+}
+
+# Plot selected quantiles
+
+plot(HEIGHT_GEDI ~ G119_TS, data = dataI, pch = 16, main = "Canopy height (m) ~ Time since the last hurricane (yr)")
+abline(lm(HEIGHT_GEDI ~ G119_TS, data = dataI), col = "red", lty = 2)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .5, data = dataI), col = "blue", lty = 2)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataI), col = "green", lty = 2)
+legend("topright", legend = c("lm", "rq_05", "rq_0.9"), col = c("red", "blue", "green"), lty = 2)
+
+# Plot selected quantile by ecoregion
+
+plot(HEIGHT_GEDI ~ G119_TS, data = dataI, pch = 16, main = "Canopy height (m) ~ Time since the last hurricane (yr)")
+abline(rq(HEIGHT_GEDI ~ G119_TS, data = dataBI), col = "blueviolet", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = 1, data = dataECAI), col = "chartreuse2", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataFI), col = "darkgoldenrod", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataGANI), col = "cyan", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataNGMI), col = "darkgreen", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataWCAI), col = "deepskyblue3", lty = 1)
+legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "deepskyblue3"), lty = 1)
+```
