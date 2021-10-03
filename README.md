@@ -599,7 +599,7 @@ legend("topright", legend = c("lm", "qr_0.5", "qr_0.8"), col = c("red", "blue", 
 <p align="center">
   <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
 </p> 
-Fig 5. Dispersion plot between GEDI-L3 Canopy height (m) and ERA5 reanalysis Cumulative wind speed (km/h) data, and trend lines from linear regression (lm), quantile-50 regression (rq_0.5), and quantile-80 regression (rq_0.8).  
+Fig 5. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Cumulative wind speed (km/h) data, and trend lines from linear regression (lm), quantile-50 regression (rq_0.5), and quantile-80 regression (rq_0.8).  
 
 ```r
 ### Read data (mangroves impacted by hurricanes - i.e., wind speed higher than 119 km/h - only)
@@ -630,14 +630,19 @@ head(dataNGMI)
 multi_rqfitI <- rq(HEIGHT_GEDI ~ G119_TS, data = dataI, tau = seq(0, 1, by = 0.1))
 multi_rqfitI
 
-# Plot different quantiles
+## Call:
+## rq(formula = HEIGHT_GEDI ~ G119_TS, tau = seq(0, 1, by = 0.1), 
+##     data = dataI)
 
-colors <- c("#ffe6e6", "#ffcccc", "#ff9999", "#ff6666", "#ff3333",
-            "#ff0000", "#cc0000", "#b30000", "#800000", "#4d0000", "#000000")
-plot(HEIGHT_GEDI ~ G119_TS, data = dataI, pch = 16, main = "Canopy height (m) ~ Time since the last hurricane (yr)")
-for (j in 1:ncol(multi_rqfit$coefficients)) {
-  abline(coef(multi_rqfit)[, j], col = colors[j])
-}
+## Coefficients:
+##               tau= 0.0    tau= 0.1    tau= 0.2    tau= 0.3  tau= 0.4    tau= 0.5    tau= 0.6    tau= 0.7   tau= 0.8
+## (Intercept) 1.92941176  3.42616738  3.95723608  4.18320508  4.598314  4.82642267  5.44840423  6.53638158  8.4160212
+## G119_TS     0.05764706 -0.01192969 -0.03772054 -0.03910254 -0.049451 -0.03548383 -0.03499162 -0.07319079 -0.1508681
+##               tau= 0.9   tau= 1.0
+## (Intercept) 10.3897615 15.7400633
+## G119_TS     -0.1937708 -0.3148617
+
+## Degrees of freedom: 352 total; 350 residual
 
 # Plot selected quantiles
 
@@ -650,14 +655,24 @@ legend("topright", legend = c("lm", "rq_05", "rq_0.9"), col = c("red", "blue", "
 # Plot selected quantile by ecoregion
 
 plot(HEIGHT_GEDI ~ G119_TS, data = dataI, pch = 16, main = "Canopy height (m) ~ Time since the last hurricane (yr)")
-abline(rq(HEIGHT_GEDI ~ G119_TS, data = dataBI), col = "blueviolet", lty = 1)
-abline(rq(HEIGHT_GEDI ~ G119_TS, tau = 1, data = dataECAI), col = "chartreuse2", lty = 1)
-abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataFI), col = "darkgoldenrod", lty = 1)
-abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataGANI), col = "cyan", lty = 1)
-abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataNGMI), col = "darkgreen", lty = 1)
-abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataWCAI), col = "deepskyblue3", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataBI), col = "blueviolet", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataECAI), col = "chartreuse2", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataFI), col = "darkgoldenrod", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataGANI), col = "cyan", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataNGMI), col = "darkgreen", lty = 1)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataWCAI), col = "deepskyblue3", lty = 1)
 legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "deepskyblue3"), lty = 1)
 ```
+<p align="center">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
+</p> 
+Fig 6. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Time since the last hurricane (yr) data, and trend lines from linear regression (lm), quantile-50 regression (rq_0.5), and quantile-80 regression (rq_0.8).  
+
+<p align="center">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
+</p> 
+Fig 7. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Time since the last hurricane (yr) data, and trend lines from quantile-80 regression (rq_0.8) by ecoregion.  
+
 
 ## (v) R code for ecosystem beta-diversity mapping using DESIS-L2A data (first box) and vertical profile visualization using GEDI-L1B and -L2A data (second box)  
 
