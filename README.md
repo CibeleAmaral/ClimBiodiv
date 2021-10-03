@@ -548,9 +548,9 @@ var_import
 plot(var_import)
 ```
 <p align="center">
-  <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
+  <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135771828-e9ff41ed-d594-41c5-993a-8255f2bb143c.png">
 </p> 
-Fig 3. Correlation matrix between variables. Here Kendall rank correlation coefficient. Variables with correlation higher than 0.75 are expected to be excluded from the Random Forest classification.  
+Fig 3. Correlation matrix between variables. Here, Kendall's rank correlation coefficient. Variables with correlations higher than 0.75 are expected to be excluded from the data frame before classification.  
 
 <p align="center">
   <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
