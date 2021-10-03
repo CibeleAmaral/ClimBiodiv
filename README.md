@@ -17,7 +17,7 @@ The drivers of the Caribbean and Gulf of Mexico mangroves damage following tropi
 <p align="center">
   <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135728986-6f0f4dcd-34ae-4ef8-8b98-84a69b9d84b6.png">
 </p> 
-Fig 1. Graphical representation of the effects of climate extreme events (herein high wind gusts) on mangrove structural biodiversity and of beta-biodiversity on mangrove structural resistance and resilience
+Fig 1. Graphical illustration of the effects of climate extreme events (herein high wind gusts) on mangrove structural biodiversity and of beta-biodiversity on mangrove structural resistance and resilience
 
 ### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification using Landsat-5/TM, and/or Landsat-8/OLI
 
