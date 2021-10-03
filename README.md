@@ -548,7 +548,7 @@ var_import
 plot(var_import)
 ```
 <p align="center">
-  <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135771828-e9ff41ed-d594-41c5-993a-8255f2bb143c.png">
+  <img width="700" height="700" src="https://user-images.githubusercontent.com/67020853/135771828-e9ff41ed-d594-41c5-993a-8255f2bb143c.png">
 </p> 
 Fig 3. Correlation matrix between variables. Here, Kendall's rank correlation coefficient. Variables with correlations higher than 0.75 are expected to be excluded from the data frame before classification.  
 
