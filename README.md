@@ -568,46 +568,24 @@ library(quantreg)
 data <- read.table("DB_GEDI_HURRICANES_all.csv", header = TRUE, sep = ",", dec = ".")
 head(data)
 
-dataB <- read.table("DB_ALL_BAH.csv", header = TRUE, sep = ",", dec = ".")
-head(dataB)
-
-dataF <- read.table("DB_ALL_FLO.csv", header = TRUE, sep = ",", dec = ".")
-head(dataF)
-
-dataECA <- read.table("DB_ALL_ECA.csv", header = TRUE, sep = ",", dec = ".")
-head(dataECA)
-
-dataGAN <- read.table("DB_ALL_GAN.csv", header = TRUE, sep = ",", dec = ".")
-head(dataGAN)
-
-dataSCA <- read.table("DB_ALL_SCA.csv", header = TRUE, sep = ",", dec = ".")
-head(dataSCA)
-
-dataSWCA <- read.table("DB_ALL_SWCA.csv", header = TRUE, sep = ",", dec = ".")
-head(dataSWCA)
-
-dataWCA <- read.table("DB_ALL_WCA.csv", header = TRUE, sep = ",", dec = ".")
-head(dataWCA)
-
-dataSGM <- read.table("DB_ALL_SGM.csv", header = TRUE, sep = ",", dec = ".")
-head(dataSGM)
-
-dataNGM <- read.table("DB_ALL_NGM.csv", header = TRUE, sep = ",", dec = ".")
-head(dataNGM)
-
 ### Multiple quantile regression to analyze the impact of 40-yrs cumulative wind gusts in the current canopy height
 
 multi_rqfit <- rq(HEIGHT_GEDI ~ SUM_GUST, data = data, tau = seq(0, 1, by = 0.1))
 multi_rqfit
 
-# Plot different quantiles
+## Call:
+## rq(formula = HEIGHT_GEDI ~ SUM_GUST, tau = seq(0, 1, by = 0.1), 
+##     data = data)
 
-colors <- c("#ffe6e6", "#ffcccc", "#ff9999", "#ff6666", "#ff3333",
-            "#ff0000", "#cc0000", "#b30000", "#800000", "#4d0000", "#000000")
-plot(HEIGHT_GEDI ~ SUM_GUST, data = data, pch = 16, main = "Canopy height (m) ~ Cumulative wind speed (km/h)")
-for (j in 1:ncol(multi_rqfit$coefficients)) {
-  abline(coef(multi_rqfit)[, j], col = colors[j])
-}
+## Coefficients:
+##                tau= 0.0      tau= 0.1      tau= 0.2     tau= 0.3     tau= 0.4     tau= 0.5     tau= 0.6     tau= 0.7
+## (Intercept) -0.976901192  4.9375184455  5.6869297094  7.294334135  9.488259557 11.887881179 13.952184005 17.517716112
+## SUM_GUST     0.001064477 -0.0005937907 -0.0007687782 -0.001279908 -0.001992904 -0.002730127 -0.003302681 -0.004378107
+##                tau= 0.8     tau= 0.9     tau= 1.0
+## (Intercept) 21.497063213 23.852270379 35.978630453
+## SUM_GUST    -0.005464242 -0.005630793 -0.007390469
+
+## Degrees of freedom: 1806 total; 1804 residual
 
 # Plot selected quantiles
   
@@ -615,26 +593,13 @@ plot(HEIGHT_GEDI ~ SUM_GUST, data = data, pch = 16, main = "Canopy height (m) ~ 
 abline(lm(HEIGHT_GEDI ~ SUM_GUST, data = data), col = "red", lty = 2)
 abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .5, data = data), col = "blue", lty = 2)
 abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = data), col = "green", lty = 2)
-legend("topright", legend = c("lm", "qr 0.5", "qr 0.8"), col = c("red", "blue", "green"), lty = 2)
+legend("topright", legend = c("lm", "qr_0.5", "qr_0.8"), col = c("red", "blue", "green"), lty = 2)
 
-# Plot selected quantile by ecoregion
-
-plot(HEIGHT_GEDI ~ SUM_GUST, data = data, pch = 16, main = "Canopy height (m) ~ Cumulative wind speed (km/h)")
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, data = dataB), col = "blueviolet", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataECA), col = "chartreuse2", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataF), col = "darkgoldenrod", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataGAN), col = "cyan", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataNGM), col = "darkgreen", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataSCA), col = "darkslateblue", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataSGM), col = "brown2", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataSWCA), col = "hotpink", lty = 1)
-abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataWCA), col = "deepskyblue3", lty = 1)
-legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "SCA", "SGM", "SWCA", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "darkslateblue", "brown2", "hotpink", "deepskyblue3"), lty = 1)
 ```
 <p align="center">
-  <img width="700" height="700" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
 </p> 
-Fig 5. Dispersion plot between GEDI-L3 Canopy height (m) and ERA5 reanalysis Cumulative wind speed (km/h), and linear regression (lm), quantile-50 regression (qr 0.5), and quantile-80 regression (qr 0.8) trend lines.  
+Fig 5. Dispersion plot between GEDI-L3 Canopy height (m) and ERA5 reanalysis Cumulative wind speed (km/h) data, and trend lines from linear regression (lm), quantile-50 regression (qr_0.5), and quantile-80 regression (qr_0.8).  
 
 ```r
 ### Read data (mangroves impacted by hurricanes - i.e., wind speed higher than 119 km/h - only)
