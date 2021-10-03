@@ -1,13 +1,23 @@
 # ClimBiodiv - a framework for cross-scale analysis on climate-biodiversity relations using remote sensing data
 
-Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity and resilience from regional to local scale
+Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity and resilience from regional to local scale:
+
+(i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification using Landsat-5/TM, and/or Landsat-8/OLI
+
+(ii) JavaScript for Earth Engine code for exporting multi-source remote sensing data from damaged and undamaged mangrove sample points as a table
+
+(iii) R code for Descriptive Statistic calculation, Machine Learning classification, and Variable Importance definition using multi-source tabulated data
+
+(iv) R code for quantile regression between current ecosystem structure using GEDI-L3 and long-term wind speed data using ERA5 reanalysis: 40-yrs cumulative wind speed, and time since the last hurricane
+
+(v) R code for ecosystem beta-diversity mapping using DESIS-L2A data and vertical profile visualization using GEDI-L1B and -L2A data  
 
 The drivers of the Caribbean and Gulf of Mexico mangroves damage following tropical cyclones, the effect of wind gusts associated with cyclones on the structure of the mangrove, the resilience to hurricanes, and the role of biodiversity in the Floridian mangroves structural resistance and resilience are used as examples
 
 <p align="center">
   <img width="600" height="450" src="https://user-images.githubusercontent.com/67020853/135728986-6f0f4dcd-34ae-4ef8-8b98-84a69b9d84b6.png">
 </p> 
-Fig 1. Graphical representation of the effects of climate extreme events (herein high wind gusts) on mangrove structural biodiversity and of functional biodiversity on mangrove structural resilience
+Fig 1. Graphical representation of the effects of climate extreme events (herein high wind gusts) on mangrove structural biodiversity and of beta-biodiversity on mangrove structural resistance and resilience
 
 ### (i) JavaScript for Earth Engine code for spectral mixture analysis, the Normalized Degradation Fraction Index for Wetlands - NDFIW calculation, and damage classification using Landsat-5/TM, and/or Landsat-8/OLI
 
@@ -378,7 +388,7 @@ var Monthly_Clim_dmg9620 = Monthly_Climate.map(function(image){
   });
 ```
 
-### (iii) R code for Descriptive Statistic calculation (first box), Machine Learning classification and variable importance definition (second box) using multi-source tabulated data
+### (iii) R code for Descriptive Statistic calculation (first box), Machine Learning classification and Variable Importance definition (second box) using multi-source tabulated data
 
 ```r
 ### Load packages
