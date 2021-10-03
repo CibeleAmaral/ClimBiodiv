@@ -650,8 +650,8 @@ multi_rqfitI
 plot(HEIGHT_GEDI ~ G119_TS, data = dataI, pch = 16, main = "Canopy height (m) ~ Time since the last hurricane (yr)")
 abline(lm(HEIGHT_GEDI ~ G119_TS, data = dataI), col = "red", lty = 2)
 abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .5, data = dataI), col = "blue", lty = 2)
-abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataI), col = "green", lty = 2)
-legend("topright", legend = c("lm", "rq_05", "rq_0.9"), col = c("red", "blue", "green"), lty = 2)
+abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataI), col = "green", lty = 2)
+legend("topright", legend = c("lm", "rq_05", "rq_0.8"), col = c("red", "blue", "green"), lty = 2)
 
 # Plot selected quantile by ecoregion
 
@@ -883,7 +883,7 @@ dev.off()
 ```
 
 ![ClimBiodiv_readme_figZFINAL](https://user-images.githubusercontent.com/67020853/135767758-dd8a719b-e418-4b49-80eb-9464ee6179ef.png)
-Fig 8. Different mangrove forest communities (beta-diversity: red, green, blue colors) present varying vertical structures (waveforms: undamaged) and resistance and resilience (waveforms: damaged) to hurricane impact.
+Fig 8. Different mangrove forest communities (beta-diversity image: in red, green, blue colors) present varying vertical structures (waveforms: undamaged) and resistance and resilience (waveforms: damaged) to hurricane impact.
 
 ### References
 
