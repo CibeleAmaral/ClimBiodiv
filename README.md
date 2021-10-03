@@ -677,8 +677,103 @@ abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataNGMI), col = "darkgreen", 
 abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataWCAI), col = "deepskyblue3", lty = 1)
 legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "deepskyblue3"), lty = 1)
 ```
-## (v) R code for ecosystem beta-diversity mapping (first box) and vertical profile visualization (second box) using DESIS-L2A and GEDI-L1B and -L2A data
+## (v) R code for ecosystem beta-diversity mapping using DESIS-L2A data (first box) and vertical profile visualization using GEDI-L1B and -L2A data (second box)  
 
+### Load packages
+
+library(raster)
+library(biodivMapR)
+
+### Define parameters
+
+# path (absolute or relative) for the image to process
+# a ENVI format header file with information about spectral bands is expected:
+# please make sure 'wavelength' and 'wavelength units' are defined
+Input_Image_File <- 'DESIS20191203_SPECTRAL'
+
+# full path for the Mask raster corresponding to image to process
+# expected to be the same dimensions (columns and lines) as the image
+# if possible in ENVI HDR format, 1 band, integer 8bits
+# expected values in the raster: 0 = masked, 1 = selected
+# set to FALSE if no mask available
+Input_Mask_File <- FALSE
+
+# Output directory: files created by script will be written there.
+# For each image processed, a subdirectory will be created after its name
+# Output_Dir <- '~/biodiv' # fill with your own path
+Output_Dir <- 'RESULTS_MapBiodivR_v160_DESIS_EVER' # fill with your own path
+
+# SPATIAL RESOLUTION
+# resolution of spatial units for alpha and beta diversity maps (in pixels), relative to original image
+# if Res.Map = 10 for images with 10 m spatial resolution, then spatial units will be 10 pixels x 10m = 100m x 100m surfaces
+# rule of thumb: spatial units between 0.25 and 4 ha usually match with ground data
+# too small window_size results in low number of pixels per spatial unit, hence limited range of variation of diversity in the image
+window_size <- 10
+
+# PCA FILTERING: 		Set to TRUE if you want second filtering based on PCA outliers to be processed.
+# Slower process
+# Automatically set to FALSE if TypePCA     = 'MNF'
+FilterPCA <- FALSE
+
+# type of dimensionality reduction:
+# PCA:  no rescaling of the data
+# SPCA: rescaling of the data
+# MNF:  minimum noise fraction
+TypePCA <- 'SPCA'
+
+# should continuum removal be performed on the image for spectral normalization?
+# Continuum_Removal recommended for multi and hyperspectral data
+Continuum_Removal <- TRUE
+
+### Define parameters for processing
+
+nbCPU <- 4
+MaxRAM <- 0.5
+nbclusters <- 50
+
+### Process images
+# Filter data in order to discard non vegetated / shaded / cloudy pixels
+NDVI_Thresh <- 0.5
+Blue_Thresh <- 500
+NIR_Thresh <- 1500
+print("PERFORM RADIOMETRIC FILTERING")
+Input_Mask_File <- perform_radiometric_filtering(Image_Path = Input_Image_File, Mask_Path = Input_Mask_File,
+                                                 Output_Dir = Output_Dir, TypePCA = TypePCA,
+                                                 NDVI_Thresh = NDVI_Thresh, Blue_Thresh = Blue_Thresh,NIR_Thresh = NIR_Thresh)
+
+# Perform  dimensionality reduction
+print("PERFORM DIMENSIONALITY REDUCTION")
+PCA_Output <- perform_PCA(Input_Image_File = Input_Image_File, Input_Mask_File = Input_Mask_File,
+                          Output_Dir = Output_Dir, TypePCA = TypePCA, FilterPCA=FilterPCA,
+                          nbCPU = nbCPU, MaxRAM = MaxRAM, Continuum_Removal = Continuum_Removal)
+
+PCA_Files <- PCA_Output$PCA_Files
+Pix_Per_Partition <- PCA_Output$Pix_Per_Partition
+nb_partitions <- PCA_Output$nb_partitions
+Input_Mask_File <- PCA_Output$MaskPath
+PCA_model <- PCA_Output$PCA_model
+SpectralFilter <- PCA_Output$SpectralFilter
+
+# Select principal components from the PCA raster
+# Sel_PC = path of the file where selected components are stored
+Sel_PC <- select_PCA_components(Input_Image_File = Input_Image_File,
+                                Output_Dir = Output_Dir, PCA_Files = PCA_Files,
+                                TypePCA = TypePCA, File_Open = TRUE)
+
+### Map beta-diversity
+print("MAP SPECTRAL SPECIES")
+map_spectral_species(Input_Image_File = Input_Image_File, Output_Dir = Output_Dir,
+                     PCA_Files = PCA_Files, PCA_model = PCA_model,
+                     SpectralFilter = SpectralFilter, Input_Mask_File = Input_Mask_File,
+                     Pix_Per_Partition = Pix_Per_Partition, nb_partitions = nb_partitions,
+                     nbCPU = nbCPU, MaxRAM = MaxRAM, nbclusters = nbclusters, TypePCA = TypePCA,
+                     Continuum_Removal = Continuum_Removal)
+
+print("MAP BETA DIVERSITY")
+map_beta_div(Input_Image_File = Input_Image_File, Output_Dir = Output_Dir, TypePCA = TypePCA,
+             window_size = window_size, nb_partitions=nb_partitions, nbCPU = nbCPU, MaxRAM = MaxRAM,
+             nbclusters = nbclusters)
+```             
 
 ```r
 ### Load rGEDI package
@@ -757,3 +852,4 @@ dev.off()
 ```
 
 ![ClimBiodiv_readme_figZFINAL](https://user-images.githubusercontent.com/67020853/135767758-dd8a719b-e418-4b49-80eb-9464ee6179ef.png)
+Fig Z. 
