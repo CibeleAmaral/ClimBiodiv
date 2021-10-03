@@ -927,4 +927,4 @@ BNP-PARIBAS Foundation, through the CORESCAM project. Images from Thematic Mappe
 
 ### Cite ClimBiodiv
 
-Amaral, C. H., Poulter, B., Fatoyinbo, T., Lagomasino, D., Taillie, P., Roman-Cuesta, R. M. (2021). ClimBiodiv - a methodological framework for cross-scale analysis on climate-biodiversity relations using remote sensing data. Accessed 2021-10-03 from https://github.com/CibeleAmaral/ClimBiodiv 
+Amaral, C. H., Poulter, B., Fatoyinbo, T., Lagomasino, D., Taillie, P., Roman-Cuesta, R. M. (2021). ClimBiodiv - a methodological framework for cross-scale analysis on climate-biodiversity relations using remote sensing data. Accessed 2021-10-03 from https://github.com/CibeleAmaral/ClimBiodiv [![DOI](https://zenodo.org/badge/412484926.svg)](https://zenodo.org/badge/latestdoi/412484926)
