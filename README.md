@@ -803,6 +803,13 @@ map_beta_div(Input_Image_File = Input_Image_File, Output_Dir = Output_Dir, TypeP
 ```             
 
 ```r
+# ===============================================================================
+# rGEDI: An R Package for NASA's Global Ecosystem Dynamics Investigation (GEDI) Data Visualizing and Processing.
+# ===============================================================================
+# Authors: Carlos Alberto Silva, Caio Hamamura, Ruben Valbuena, Steven Hancock, Adrian Cardil, Eben N. Broadbent, Danilo R. A. de Almeida, Celso H. L. Silva Junior and Carine 
+# Klauberg
+# ===============================================================================
+
 ### Load rGEDI package
 
 library(rGEDI)
