@@ -672,7 +672,7 @@ Fig 6. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis -
 <p align="center">
   <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135773494-aaec4fa0-9ac2-48ba-9050-50652e908ab7.png">
 </p> 
-Fig 7. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Time since the last hurricane (yr) data, and trend lines from quantile-80 regression (rq_0.8) by ecoregion. Only mangroves from the Greater Antilles and the Northern Gulf of Mexico present the expected pattern of structural resilience to hurricanes.  
+Fig 7. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Time since the last hurricane (yr) data, and trend lines from quantile-80 regression (rq_0.8) by ecoregion. Not all Caribbean and Gulf of Mexico sub-regions present the expected pattern of structural resilience to hurricanes.
 
 
 ## (v) R code for ecosystem beta-diversity mapping using DESIS-L2A data (first box) and vertical profile visualization using GEDI-L1B and -L2A data (second box)  
@@ -883,7 +883,7 @@ dev.off()
 ```
 
 ![ClimBiodiv_readme_figZFINAL](https://user-images.githubusercontent.com/67020853/135767758-dd8a719b-e418-4b49-80eb-9464ee6179ef.png)
-Fig Z. 
+Fig 8. Different mangrove forest communities (beta-diversity: red, green, blue colors) present varying vertical structures (waveforms: undamaged) and resistance and resilience (waveforms: damaged) to hurricane impact.
 
 ### References
 
