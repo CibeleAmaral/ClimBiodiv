@@ -599,7 +599,6 @@ head(dataNGM)
 
 multi_rqfit <- rq(HEIGHT_GEDI ~ SUM_GUST, data = data, tau = seq(0, 1, by = 0.1))
 multi_rqfit
-?summary.rq
 
 # Plot different quantiles
 
@@ -632,8 +631,10 @@ abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataSWCA), col = "hotpink", l
 abline(rq(HEIGHT_GEDI ~ SUM_GUST, tau = .8, data = dataWCA), col = "deepskyblue3", lty = 1)
 legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "SCA", "SGM", "SWCA", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "darkslateblue", "brown2", "hotpink", "deepskyblue3"), lty = 1)
 ```
-
-
+<p align="center">
+  <img width="700" height="700" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
+</p> 
+Fig 5. Dispersion plot between GEDI-L3 Canopy height (m) and ERA5 reanalysis Cumulative wind speed (km/h), and linear regression (lm), quantile-50 regression (qr 0.5), and quantile-80 regression (qr 0.8) trend lines.  
 
 ```r
 ### Read data (mangroves impacted by hurricanes - i.e., wind speed higher than 119 km/h - only)
