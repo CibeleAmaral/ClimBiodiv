@@ -599,7 +599,7 @@ legend("topright", legend = c("lm", "qr_0.5", "qr_0.8"), col = c("red", "blue", 
 <p align="center">
   <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
 </p> 
-Fig 5. Dispersion plot between GEDI-L3 Canopy height (m) and ERA5 reanalysis Cumulative wind speed (km/h) data, and trend lines from linear regression (lm), quantile-50 regression (qr_0.5), and quantile-80 regression (qr_0.8).  
+Fig 5. Dispersion plot between GEDI-L3 Canopy height (m) and ERA5 reanalysis Cumulative wind speed (km/h) data, and trend lines from linear regression (lm), quantile-50 regression (rq_0.5), and quantile-80 regression (rq_0.8).  
 
 ```r
 ### Read data (mangroves impacted by hurricanes - i.e., wind speed higher than 119 km/h - only)
