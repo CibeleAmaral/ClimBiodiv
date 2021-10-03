@@ -601,6 +601,7 @@ legend("topright", legend = c("lm", "qr_0.5", "qr_0.8"), col = c("red", "blue", 
 </p> 
 Fig 5. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Cumulative wind speed (km/h) data, and trend lines from linear regression (lm), quantile-50 regression (rq_0.5), and quantile-80 regression (rq_0.8).  
 
+
 ```r
 ### Read data (mangroves impacted by hurricanes - i.e., wind speed higher than 119 km/h - only)
 
@@ -664,14 +665,14 @@ abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .8, data = dataWCAI), col = "deepskyblue3
 legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "deepskyblue3"), lty = 1)
 ```
 <p align="center">
-  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135773488-ac245101-0397-4883-bc72-ff6ee3047adc.png">
 </p> 
 Fig 6. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Time since the last hurricane (yr) data, and trend lines from linear regression (lm), quantile-50 regression (rq_0.5), and quantile-80 regression (rq_0.8).  
 
 <p align="center">
-  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135772813-e9febadd-861c-4024-be07-79743e0e6bd0.png">
+  <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135773494-aaec4fa0-9ac2-48ba-9050-50652e908ab7.png">
 </p> 
-Fig 7. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Time since the last hurricane (yr) data, and trend lines from quantile-80 regression (rq_0.8) by ecoregion.  
+Fig 7. Dispersion plot between GEDI-L3 - Canopy height (m) and ERA5 reanalysis - Time since the last hurricane (yr) data, and trend lines from quantile-80 regression (rq_0.8) by ecoregion. Only mangroves from the Greater Antilles and the Northern Gulf of Mexico present the expected pattern of structural resilience to hurricanes.  
 
 
 ## (v) R code for ecosystem beta-diversity mapping using DESIS-L2A data (first box) and vertical profile visualization using GEDI-L1B and -L2A data (second box)  
