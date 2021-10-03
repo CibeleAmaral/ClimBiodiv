@@ -1,4 +1,4 @@
-# ClimBiodiv - a framework for cross-scale analysis on climate-biodiversity relations using remote sensing data
+# ClimBiodiv - a methodological framework for cross-scale analysis on climate-biodiversity relations using remote sensing data
 
 Here you will find a set of JavaScript for Earth Engine and R codes for analyzing the effect of climate on vegetation diversity and resilience from regional to local scale:
 
@@ -940,4 +940,4 @@ BNP-PARIBAS Foundation, through the CORESCAM project. Images from Thematic Mappe
 
 ### Cite ClimBiodiv
 
-Amaral, C. H., Poulter, B., Fatoyinbo, T., Lagomasino, D., Taillie, P., Roman-Cuesta, R. M. (2021). ClimBiodiv - a framework for cross-scale analysis on climate-biodiversity relations using remote sensing data. Accessed 2021-10-03 from https://github.com/CibeleAmaral/ClimBiodiv 
+Amaral, C. H., Poulter, B., Fatoyinbo, T., Lagomasino, D., Taillie, P., Roman-Cuesta, R. M. (2021). ClimBiodiv - a methodological framework for cross-scale analysis on climate-biodiversity relations using remote sensing data. Accessed 2021-10-03 from https://github.com/CibeleAmaral/ClimBiodiv 
