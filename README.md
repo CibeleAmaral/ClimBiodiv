@@ -677,7 +677,34 @@ abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataNGMI), col = "darkgreen", 
 abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataWCAI), col = "deepskyblue3", lty = 1)
 legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "deepskyblue3"), lty = 1)
 ```
+
 ## (v) R code for ecosystem beta-diversity mapping using DESIS-L2A data (first box) and vertical profile visualization using GEDI-L1B and -L2A data (second box)  
+
+```r
+# ===============================================================================
+# biodivMapR
+# ===============================================================================
+# PROGRAMMERS:
+#
+# Jean-Baptiste FERET <jb.feret@teledetection.fr>
+# Florian de Boissieu <fdeboiss@gmail.com>
+#
+# Copyright 2020/06 Jean-Baptiste FERET
+#
+# biodivMapR is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>
+#
+# ===============================================================================
 
 ### Load packages
 
