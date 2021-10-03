@@ -542,7 +542,7 @@ plot(var_import)
 </p> 
 Fig 4. Variable importance to the Random Forest classification. Wind speed is the most important driver of mangrove damage in our example.
 
-## (iv) R code for quantile regression between current ecosystem structure (GEDI L3) and long-term wind speed data (ERA5 reanalysis): 40-yrs cumulative wind speed (first box), and time since the last hurricane (second box)
+## (iv) R code for quantile regression between current ecosystem structure (GEDI-L3) and long-term wind speed data (ERA5 reanalysis): 40-yrs cumulative wind speed (first box), and time since the last hurricane (second box)
 ```r
 ### Load package
 
@@ -677,3 +677,83 @@ abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataNGMI), col = "darkgreen", 
 abline(rq(HEIGHT_GEDI ~ G119_TS, tau = .9, data = dataWCAI), col = "deepskyblue3", lty = 1)
 legend("topright", legend = c("BAH", "ECA", "FLO", "GAN", "NGM", "WCA"), col = c("blueviolet", "chartreuse2", "darkgoldenrod", "cyan", "darkgreen", "deepskyblue3"), lty = 1)
 ```
+## (v) R code for ecosystem beta-diversity mapping (first box) and vertical profile visualization (second box) using DESIS-L2A and GEDI-L1B and -L2A data
+
+
+```r
+### Load rGEDI package
+
+library(rGEDI)
+
+### Set output dir
+
+outdir=getwd()
+
+### Read GEDI data
+
+gedilevel1b<-readLevel1B(level1Bpath = paste0(outdir,"\\GEDI01_B_2019260084659_O04324_03_T05330_02_005_01_V002.h5"))
+gedilevel2a<-readLevel2A(level2Apath = paste0(outdir,"\\GEDI02_A_2019260084659_O04324_03_T05330_02_003_01_V002.h5"))
+
+### Get GEDI Pulse Geolocation (GEDI Level1B)
+
+level1bGeo<-getLevel1BGeo(level1b=gedilevel1b,select=c("elevation_bin0"))
+head(level1bGeo)
+
+# Converting shot_number as "integer64" to "character"
+level1bGeo$shot_number<-paste0(level1bGeo$shot_number)
+
+# Converting level1bGeo as data.table to SpatialPointsDataFrame
+library(sp)
+level1bGeo_spdf<-SpatialPointsDataFrame(cbind(level1bGeo$longitude_bin0, level1bGeo$latitude_bin0),
+                                        data=level1bGeo)
+
+# Exporting level1bGeo as ESRI Shapefile
+raster::shapefile(level1bGeo_spdf,paste0(outdir,"\\GEDI01_B_2020181152926_O08763_03_T00908_02_005_01_V002"))
+
+### Get GEDI Elevation and Height Metrics (GEDI Level2A)
+
+level2AM<-getLevel2AM(gedilevel2a)
+head(level2AM[,c("beam","shot_number","elev_highestreturn","elev_lowestmode","rh100")])
+
+##          beam       shot_number elev_highestreturn elev_lowestmode rh100
+##  1: BEAM0000 19640002800109382           740.7499        736.3301  4.41
+##  2: BEAM0000 19640003000109383           756.0878        746.7614  9.32
+##  3: BEAM0000 19640003200109384           770.3423        763.1509  7.19
+##  4: BEAM0000 19640003400109385           775.9838        770.6652  5.31
+##  5: BEAM0000 19640003600109386           777.8409        773.0841  4.75
+##  6: BEAM0000 19640003800109387           778.7181        773.6990  5.01
+
+# Converting shot_number as "integer64" to "character"
+level2AM$shot_number<-paste0(level2AM$shot_number)
+
+# Converting Elevation and Height Metrics as data.table to SpatialPointsDataFrame
+level2AM_spdf<-SpatialPointsDataFrame(cbind(level2AM$lon_lowestmode,level2AM$lat_lowestmode),
+                                      data=level2AM)
+
+# Exporting Elevation and Height Metrics as ESRI Shapefile
+raster::shapefile(level2AM_spdf,paste0(outdir,"\\GEDI02_A_2020181152926_O08763_03_T00908_02_003_01_V002"))
+
+### Getting GEDI Full-waveform (GEDI Level1B)
+
+# Extracting GEDI full-waveform for a giving shotnumber
+wf <- getLevel1BWF(gedilevel1b, shot_number="43240600300638451")
+
+par(mfrow = c(2,1), mar=c(4,4,1,1), cex.axis = 1.5)
+
+plot(wf, relative=FALSE, polygon=TRUE, type="l", lwd=2, col="forestgreen",
+     xlab="Waveform Amplitude", ylab="Elevation (m)")
+grid()
+plot(wf, relative=TRUE, polygon=FALSE, type="l", lwd=2, col="forestgreen",
+     xlab="Waveform Amplitude (%)", ylab="Elevation (m)")
+grid()
+
+### Plot waveform with RH metrics
+
+shot_number = "43240600300638451"
+
+png("43240600300638451_green_dmg2.png", width = 8, height = 6, units = 'in', res = 300)
+plotWFMetrics(gedilevel1b, gedilevel2a, shot_number, rh=c(25, 50, 75, 90))
+dev.off()
+```
+
+![ClimBiodiv_readme_figZFINAL](https://user-images.githubusercontent.com/67020853/135767758-dd8a719b-e418-4b49-80eb-9464ee6179ef.png)
