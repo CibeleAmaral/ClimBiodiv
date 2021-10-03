@@ -470,7 +470,7 @@ export2word(export_table, file = "tableDMG_EXAMPLE.docx")
 <p align="center">
   <img width="680" height="500" src="https://user-images.githubusercontent.com/67020853/135730816-133e439e-0c02-4d33-83d3-0ec0d7bafd1d.png">
 </p> 
-Fig 3. Example of normality plots for the variable "annual maximum sustained wind speed (km/hr) 
+Fig 3. Example of normality plots for the variable "annual maximum sustained wind speed (km/hr)" 
 
 
 ```r
@@ -547,6 +547,11 @@ var_import<- varImp(rf_DMG_EXAMPLE)
 var_import
 plot(var_import)
 ```
+<p align="center">
+  <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
+</p> 
+Fig 3. Correlation matrix between variables. Here Kendall rank correlation coefficient. Variables with correlation higher than 0.75 are expected to be excluded from the Random Forest classification.  
+
 <p align="center">
   <img width="770" height="500" src="https://user-images.githubusercontent.com/67020853/135730951-fd236340-9327-4e2b-9378-3d3a5f8ac837.png">
 </p> 
