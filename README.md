@@ -891,27 +891,43 @@ Fig Z.
 ### References
 
 Alonso, K., Bachmann, M., Burch, K., Carmona, E., Cerra, D., De los Reyes, R., ... & Tegler, M. (2019). Data products, quality and validation of the DLR Earth Sensing Imaging Spectrometer (DESIS). Sensors, 19(20), 4471.
+
 Amaral, C. H., Poulter, B., Fatoyinbo, T., Lagomasino, D., Taillie, P., Lizcano, G., Roman-Cuesta, R. M. (2021). Assessing the long-term effect of hurricanes on the Caribbean mangrove structure with GEDI L3 data. In SilviLaser 2021. Vienna, Austria, 28-30.09.2021.
+
 Amaral, C. H., Poulter, B., Lagomasino, D., Fatoyinbo, T., Taillie, P., Lizcano, G., Roman-Cuesta, R. M. (2021). Climate change and coastal development affect vulnerability and recovery of mangroves impacted by tropical cyclones. (in prep.)
+
 Dubayah, R., Hofton, M., Blair, J., Armston, J., Tang, H., Luthcke, S. (2020). GEDI L2A Elevation and Height Metrics Data Global Footprint Level V001. NASA EOSDIS Land Processes DAAC. Accessed 2021-10-03 from https://doi.org/10.5067/GEDI/GEDI02_A.001
+
 Dubayah, R., Luthcke, S., Blair, J., Hofton, M., Armston, J., Tang, H. (2020). GEDI L1B Geolocated Waveform Data Global Footprint Level V001. NASA EOSDIS Land Processes DAAC. Accessed 2021-10-03 from https://doi.org/10.5067/GEDI/GEDI01_B.001
+
 Dubayah, R.O., S.B. Luthcke, T.J. Sabaka, J.B. Nicholas, S. Preaux, and M.A. Hofton. 2021. GEDI L3 Gridded Land Surface Metrics, Version 1. ORNL DAAC, Oak Ridge, Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/1865
+
 Féret, J.-B., Asner, G.P., 2014. Mapping tropical forest canopy diversity using high-fidelity imaging spectroscopy. Ecol. Appl. 24, 1289–1296. 
+
 Féret, J.-B., de Boissieu, F., 2019. biodivMapR: an R package for α‐ and β‐diversity mapping using remotely‐sensed images. Methods Ecol. Evol. 00:1-7. 
+
 Hijmans, R. J., Van Etten, J., Cheng, J., Mattiuzzi, M., Sumner, M., Greenberg, J. A., ... & Hijmans, M. R. J. (2015). Package ‘raster’. R package, 734.
+
 Koenker, R., Portnoy, S., Ng, P. T., Zeileis, A., Grosjean, P., & Ripley, B. D. (2018). Package ‘quantreg’. Cran R-project. org.
+
 Kuhn, M. (2015). Caret: classification and regression training. Astrophysics Source Code Library, ascl-1505.
+
 Liaw, A., & Wiener, M. (2002). Classification and regression by randomForest. R news, 2(3), 18-22.
+
 Patel, K. (2021). 2020 Hurricanes Damage Vulnerable Mangroves. Accessed 2021-10-03 from https://earthobservatory.nasa.gov/images/147787/2020-hurricanes-damage-vulnerable-mangroves
+
 Silva,C.A; Hamamura,C.; Valbuena, R.; Hancock,S.; Cardil,A.; Broadbent, E. N.; Almeida,D.R.A.; Silva Junior, C.H.L; Klauberg, C. rGEDI: NASA's Global Ecosystem Dynamics Investigation (GEDI) Data Visualization and Processing. version 0.1.9, accessed on October. 22 2020, available at: https://CRAN.R-project.org/package=rGEDI
+
 Subirana, I., Sanz, H., & Vila, J. (2014). Building bivariate tables: The compareGroups package for R. Journal of Statistical Software, 57(1), 1-16.
+
 Wei, T., Simko, V., Levy, M., Xie, Y., Jin, Y., & Zemla, J. (2017). Package ‘corrplot’. Statistician, 56(316), e24.
+
 Wickham, H., Francois, R., Henry, L., & Müller, K. (2015). dplyr: A grammar of data manipulation. R package version 0.4, 3, p156.
 
 ### Acknowledgments
 
-BNP-PARIBAS Foundation, through the CORESCAM project. Images from Thematic Mapper/Landsat-5 and Operational Land Imager/Landsat-8 are courtesy of the U.S. Geological Survey. Images from DESIS are courstesy of the DLR German Aerospace Center. Trees illustration (in Fig 1) are courstesy of the Integration and Application Network, Univeristy of Maryland.
+BNP-PARIBAS Foundation, through the CORESCAM project. Images from Thematic Mapper/Landsat-5 and Operational Land Imager/Landsat-8 are courtesy of the U.S. Geological Survey. Images from DESIS are courtesy of the DLR German Aerospace Center. Trees illustrations (Fig 1) are courtesy of the Integration and Application Network, University of Maryland.
 
-### Citing ClimBiodiv
+### Cite ClimBiodiv
 
 Amaral, C. H., Poulter, B., Fatoyinbo, T., Lagomasino, D., Taillie, P., Roman-Cuesta, R. M. (2021). ClimBiodiv - a framework for cross-scale analysis on climate-biodiversity relations using remote sensing data. Accessed 2021-10-03 from https://github.com/CibeleAmaral/ClimBiodiv 
